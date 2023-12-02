@@ -13,10 +13,14 @@ export function App() {
 
   useEffect(() => {
     const savedContacts = JSON.parse(localStorage.getItem(CONTACTS));
+    console.log('Saved Contacts from localStorage:', savedContacts);
     savedContacts && setContacts(savedContacts);
   }, []);
 
   useEffect(() => {
+    if (!contacts.length) {
+      return;
+    }
     localStorage.setItem(CONTACTS, JSON.stringify(contacts));
   }, [contacts]);
 
